@@ -1,0 +1,41 @@
+# Python and tooling
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Local credentials and configuration
+.env
+.env.*
+!.env.example
+
+# Training and evaluation outputs
+outputs/
+checkpoints/
+logs/
+wandb/
+*.log
+*.jsonl
+
+# Downloaded data and model caches
+data/
+videos/
+*.tar
+*.tar.gz
+*.mp4
+*.webm
+*.avi
+*.bin
+*.safetensors
+*.pth
+*.pt
+
+# IDE/OS files
+.idea/
+.vscode/
+.DS_Store

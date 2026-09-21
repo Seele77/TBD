@@ -1,0 +1,32 @@
+dataset_path: SeePhys/SeePhys
+dataset_kwargs:
+  token: True
+task: "seephys"
+test_split: train
+output_type: generate_until
+
+doc_to_visual: !function seephys_utils.seephys_doc_to_visual
+doc_to_text: !function seephys_utils.seephys_doc_to_text
+doc_to_target: "answer" 
+
+process_results: !function seephys_utils.seephys_process_results
+
+generation_kwargs:
+  until:
+    - "</answer>"
+    - "\n\n"
+  do_sample: false
+  temperature: 1
+
+metric_list:
+  - metric: eval_results
+    aggregation: !function seephys_utils.seephys_aggregate_results
+    higher_is_better: true
+
+metadata:
+  version: 0.0
+  # Evaluation model for LLM-as-a-judge.
+  eval_model_name: "gpt-5-mini"
+  # Set to false to enable LLM-as-a-judge (recommended).
+  # Set to true to run regex-only evaluation (faster but less accurate).
+  quick_extract: false
